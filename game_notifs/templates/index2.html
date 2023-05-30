@@ -1,30 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Card List</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <style>
-    .card {
-      height: 400px; /* Set the desired height for the card */
-    }
+{% extends "base.html" %}
+{% block content %}
 
-    .card-text {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 3; /* Show up to 3 lines of text */
-      -webkit-box-orient: vertical;
-    }
-    
-    .carousel-indicators li {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
+  <div class="container" style="padding: 0.8rem 0;">
     <div class="row">
       {% for item in data %}
         <div class="col-md-4">
@@ -64,25 +41,5 @@
     </div>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-  <script>
-    $(document).ready(function() {
-      $('.carousel').each(function() {
-        $(this).carousel({
-          interval: false
-        });
-      });
-
-      $('.carousel').on('slid.bs.carousel', function(event) {
-        var activeIndex = $(event.target).find('.carousel-item.active').index();
-        var indicator = $(event.target).find('.carousel-indicators li');
-        indicator.removeClass('active');
-        $(indicator[activeIndex]).addClass('active');
-      });
-    });
-  </script>
-</body>
-</html>
+{% include "footer.html" %}
+{% endblock %}

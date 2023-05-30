@@ -84,7 +84,7 @@ def chec_desc_len(desc):
 def compare_cache_with_data(fresh_data, cache_data):
     fresh_data_games = {item.get('title') for item in fresh_data}
 
-    cache_data_games = {game.get('title') for game in json.loads(cache_data).get('fields')}
+    cache_data_games = [game.get('fields').get('titlle') for game in cache_data]
 
     return fresh_data_games, cache_data_games
 

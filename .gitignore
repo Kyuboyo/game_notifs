@@ -1,2 +1,6 @@
 .venv/
 .vscode/
+**/**/__pycache__/
+**/**/**/__pycache__/
+game_notifs_aws.ppk
+git.txt
