@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-0tr4ff@8tc4l@qop6kg!p-x=b0t6$ml56gm$(jt180t%e8d=a3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -86,9 +86,9 @@ DATABASES = {
     'default': {
         'ENGINE'    : 'django.db.backends.postgresql_psycopg2',
         "NAME"      : 'game_notifs',
-        "USER"      : 'postgres',
+        "USER"      : 'gameNotifs', #'postgres',
         "PASSWORD"  : 'VeryS3cure',
-        "HOST"      : '127.0.0.1',
+        "HOST"      : 'game-notifs.cytyrp4xtepq.us-east-1.rds.amazonaws.com', #'127.0.0.1',
         "PORT"      : '5432',
     }
 }
