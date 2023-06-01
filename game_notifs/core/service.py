@@ -11,7 +11,7 @@ api = EpicGamesStoreAPI()
 
 def get_fields(call_by='epic'):
     if call_by == 'epic':
-        fields = ["title", "description", "keyImages", "seller", "categories"]
+        fields = ["title", "description", "keyImages", "seller", "categories", "slug"]
     return fields
 
 def pull_free_games_epic(call_by):
@@ -21,6 +21,7 @@ def pull_free_games_epic(call_by):
         for game in games:
             fields = get_fields(call_by)
             details = {field: game.get(field) or None for field in fields}
+            details['slug'] = game.get('productSlug') or ''
             game_list.append(details)
             
     return game_list
@@ -46,10 +47,11 @@ def save_offers(obj, store):
         for item in obj:
             description = chec_desc_len(item.get('description'))
             game = GamesModel.objects.create(
-                                                title=item.get('title'), 
-                                                description=description, 
-                                                seller=item.get('seller').get('name'), 
-                                                store=store
+                                                title       = item.get('title'), 
+                                                description = description, 
+                                                seller      = item.get('seller').get('name'), 
+                                                store       = store,
+                                                slug        = item.get('productSlug')
                                             )
             for image in item.get('keyImages'):
                 ImagesModel.objects.create(url=image.get('url'), game=game)
@@ -100,3 +102,7 @@ def get_free_games_with_images(store):
     data = gameset
     print(data)
     return data
+
+def getURL(store, slug):
+    if store == 'epic':
+        return 'https://store.epicgames.com/en-US/p/' + slug

@@ -12,6 +12,7 @@ class GamesModel(BaseModel):
     description = models.CharField(max_length=255, null=False)
     seller = models.TextField(null=False)
     store = models.TextField(choices=StoreList.choices, null=False)
+    slug = models.TextField()
 
     def __str__(self):
         return f"{self.title}"
