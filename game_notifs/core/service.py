@@ -35,7 +35,6 @@ def get_free_games(store):
         details[0]['fields']['images'] = images
         data.append(details[0])
 
-    print(data)
     return data
 
 def save_offers(obj, store):
@@ -100,7 +99,6 @@ def get_free_games_with_images(store):
         gameset.append(details[0])
 
     data = gameset
-    print(data)
     return data
 
 def getURL(store, slug):
