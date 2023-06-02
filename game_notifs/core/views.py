@@ -32,7 +32,7 @@ class PullData(APIView):
                 save_offers(fresh_data, 'epic')
                 update_cached_data('epic')
             res['status']   = "Success"
-            res['message']  = "Logged out successfully"
+            res['message']  = "Data updated successfully"
             return sendResponse(200, res)
         except Exception as e:
             res['status'] = "Failed"
