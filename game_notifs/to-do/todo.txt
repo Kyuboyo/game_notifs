@@ -1,4 +1,0 @@
-check models before entry to remove duplicate data
-Add user app with model
-add notifications. let user unsubscribe to notifs too
-add redirect to epic on click
