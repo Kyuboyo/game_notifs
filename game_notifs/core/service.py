@@ -50,7 +50,7 @@ def save_offers(obj, store):
                                                 description = description, 
                                                 seller      = item.get('seller').get('name'), 
                                                 store       = store,
-                                                slug        = item.get('productSlug') or ''
+                                                slug        = item.get('slug') or ''
                                             )
             for image in item.get('keyImages'):
                 ImagesModel.objects.create(url=image.get('url'), game=game)
