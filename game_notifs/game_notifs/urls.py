@@ -22,5 +22,5 @@ urlpatterns = [
 
     re_path(r'', include('app_users.urls')),
     re_path(r'core/', include('core.urls')),
-    #re_path(r'', include('users.urls')),
+    re_path(r'feedback/', include('feedbacks.urls')),
 ]

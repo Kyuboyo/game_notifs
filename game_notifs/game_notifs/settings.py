@@ -45,6 +45,7 @@ EXTERNAL_APPS = []
 
 PROJECT_APPS = [
     'app_users',
+    'feedbacks',
     'core',
 ]
 
