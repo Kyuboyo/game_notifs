@@ -1,0 +1,77 @@
+{% extends "body.html" %}
+{% block body %}
+
+{% for item in data %}
+<div class="card" style="height: 9rem;">
+  <div class="card-body">
+    <h5 class="card-feedback">{{ item.fields.feedback }}</h5>
+    <p class="card-text">{{ item.fields.description }}</p>
+    <div class="btn-group" role="group" aria-label="Update Buttons">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateModal{{ item.pk }}">Edit</button>
+      <!-- Update Feedback -->
+      <div class="modal fade" id="updateModal{{ item.pk }}" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel{{ item.pk }}" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-feedback" id="updateModalLabel{{ item.pk }}">Edit Feedback</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="{% url 'update_feedback' pk=item.pk %}" method="post">
+                <!--form method="post"-->
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <label for="feedback{{ item.pk }}">feedback:</label>
+                    <input type="text" class="form-control" id="feedback{{ item.pk }}" name="feedback" value="{{ item.fields.feedback }}" placeholder="{{ item.fields.feedback }}">
+                  </div>
+                  <div class="form-group">
+                    <label for="description{{ item.pk }}">Description:</label>
+                    <textarea class="form-control" id="description{{ item.pk }}" name="description" rows="3" required>{{ item.fields.description }}</textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary" onclick="edit({{item.pk}})">Edit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      <button type="button" class="btn btn-secondary" data-toggle="modal" onclick="openDeleteModal('{{ item.pk }}')" data-target="#deleteModal{{ item.pk }}">Delete</button>
+      <!-- Delete Feedback -->
+      <div class="modal fade" id="deleteModal{{ item.pk }}" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel{{ item.pk }}NoFields" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-feedback" id="updateModalLabel{{ item.pk }}NoFields">Are you sure you want to delete {{ item.fields.feedback }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="{% url 'delete_feedback' item.pk %}" method="post">
+                <!--form method="post"-->
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-primary" onclick="delete_feedback({{item.pk}})">Delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+<script>
+    function edit(pk) {
+        location.replace('/feedback/update_feedback/'+pk+'/')
+    }
+    function delete_feedback(pk) {
+        location.replace('/feedback/delete_feedback/'+pk+'/')
+    }
+</script>
+
+{% include "footer.html" %}
+{% endblock %}

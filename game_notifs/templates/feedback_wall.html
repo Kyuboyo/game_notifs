@@ -1,0 +1,36 @@
+{% extends "body.html" %}
+{% block body %}
+<div id="string-container"></div>
+
+<script>
+    function displayRandomStrings() {
+        var strings = {{ string_list|safe }};
+        console.log(strings);
+        var container = $('#string-container');
+        container.empty();
+    
+        strings.forEach(function(string) {
+            var decodedString = $('<textarea>').html(string).text(); // Decode HTML entities
+
+            var randomSize = Math.floor(Math.random() * 30) + 10; // Random size between 10 and 40 pixels
+            var randomLeft = Math.floor(Math.random() * (container.width() - randomSize)); // Random left position within container width
+            var randomTop = Math.floor(Math.random() * (container.height() - randomSize)); // Random top position within container height
+            var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16); // Random hex color
+    
+            var stringElement = $('<span>').addClass('random-string')
+                .css('font-size', randomSize + 'px')
+                .css('left', randomLeft + 'px')
+                .css('top', randomTop + 'px')
+                .css('color', randomColor)
+                .text(string);
+    
+            container.append(stringElement);
+        });
+    }
+    
+    $(document).ready(function() {
+        displayRandomStrings(); // Display the random strings on page load
+    });
+    </script>
+{% include "footer.html" %}
+{% endblock %}

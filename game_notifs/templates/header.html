@@ -2,13 +2,13 @@
     <div class="d-flex justify-content-between">
       <ul class="nav nav-tabs card-header-tabs">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Free Games</a>
+          <a class="nav-link active" href="{% url 'offers' %}">Free Games</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'feedback_wall' %}">Feedback Wall</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
         </li>
       </ul>
       
@@ -107,5 +107,5 @@
     function signup() {
         location.replace('/signup')
     }
-</script>
+  </script>
   
